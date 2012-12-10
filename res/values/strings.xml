@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello stackoverflowdemo-android!</string>
-    <string name="app_name">stackoverflowdemo-android</string>
+    <string name="app_name">StackOverflow Demo</string>
+    <string name="search_c">SEARCH</string>
+    <string name="privileges_c">PRIVILEGES</string>
+    <string name="badges_c">BADGES</string>
 </resources>

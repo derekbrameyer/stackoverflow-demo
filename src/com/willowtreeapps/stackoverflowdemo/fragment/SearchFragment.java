@@ -1,6 +1,7 @@
-package com.willowtreeapps.stackoverflowdemo;
+package com.willowtreeapps.stackoverflowdemo.fragment;
 
 import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockListFragment;
+import com.willowtreeapps.stackoverflowdemo.R;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +16,7 @@ import oak.widget.TextViewWithFont;
 import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
 
-public class TabA extends RoboSherlockListFragment {
+public class SearchFragment extends RoboSherlockListFragment {
 
     private String[] dataArray = new String[]{"This", "Is", "An", "Android", "App!"};
 
