@@ -8,7 +8,9 @@
     <oak.widget.CancelEditText
             style="@style/FillWidth"
             android:id="@+id/search_text"
-            android:hint="@string/search_hint"/>
+            android:hint="@string/search_hint"
+            android:inputType="text"
+            android:imeOptions="actionSearch"/>
     <ListView
             style="@style/FillWidth"
             android:id="@id/android:list"

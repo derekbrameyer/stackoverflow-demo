@@ -7,11 +7,15 @@ import com.willowtreeapps.stackoverflowdemo.R;
 import com.willowtreeapps.stackoverflowdemo.StackOverflowApi;
 import com.willowtreeapps.stackoverflowdemo.model.Question;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +52,21 @@ public class SearchFragment extends RoboSherlockListFragment {
 
         mGetQuestions = new GetQuestions("tree", 1);
         mGetQuestions.execute();
+
+        searchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    InputMethodManager imm = (InputMethodManager) getSherlockActivity().getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
+                    mGetQuestions = new GetQuestions(searchText.getText().toString(), 1);
+                    mGetQuestions.execute();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -118,6 +137,7 @@ public class SearchFragment extends RoboSherlockListFragment {
         @Override
         protected void onPreExecute() {
             // TODO Refresh indicator
+            setListAdapter(null);
         }
 
         @Override
