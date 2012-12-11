@@ -63,8 +63,9 @@ public class StackOverflowApi {
     }
 
     public Question.Response getQuestions(String intitle, int page) throws IOException {
-        Question.Response response = readJsonToObject(String.format(SEARCH_URL, URLEncoder.encode(intitle, "UTF-8"),
-                URLEncoder.encode(Integer.toString(page), "UTF-8")),
+        Question.Response response = readJsonToObject(
+                String.format(SEARCH_URL, URLEncoder.encode(Integer.toString(page), "UTF-8"),
+                        URLEncoder.encode(intitle, "UTF-8")),
                 Question.Response.class);
         return response;
     }
