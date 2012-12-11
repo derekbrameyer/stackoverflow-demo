@@ -4,6 +4,7 @@ target/
 classes/
 gen-external-apklibs/
 out/
+tmp/
 *.iml
 .idea/
 .DS_STORE

@@ -12,11 +12,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import oak.widget.TextViewWithFont;
-import roboguice.inject.InjectResource;
+import oak.widget.CancelEditText;
 import roboguice.inject.InjectView;
 
 public class SearchFragment extends RoboSherlockListFragment {
+
+    @InjectView(R.id.search_text) CancelEditText searchText;
+
+    private int mPageNumber = 1;
 
     private String[] dataArray = new String[]{"This", "Is", "An", "Android", "App!"};
 
@@ -24,7 +27,8 @@ public class SearchFragment extends RoboSherlockListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ListAdapter listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, dataArray);
+        ListAdapter listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,
+                dataArray);
         setListAdapter(listAdapter);
     }
 
@@ -35,6 +39,7 @@ public class SearchFragment extends RoboSherlockListFragment {
 
     @Override
     public void onListItemClick(ListView list, View v, int position, long id) {
-        Toast.makeText(getSherlockActivity(), getListView().getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getSherlockActivity(), getListView().getItemAtPosition(position).toString(), Toast.LENGTH_SHORT)
+                .show();
     }
 }
