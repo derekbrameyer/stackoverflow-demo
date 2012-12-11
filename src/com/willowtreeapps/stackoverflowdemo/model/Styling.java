@@ -10,5 +10,4 @@ public class Styling {
     @SerializedName("link_color") public String linkColor;
     @SerializedName("tag_background_color") public String tagBackgroundColor;
     @SerializedName("tag_foreground_color") public String tagForegroundColor;
-
 }

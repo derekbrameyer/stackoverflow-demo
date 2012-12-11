@@ -41,4 +41,14 @@ public class Question {
     @SerializedName("title") public String title;
     @SerializedName("up_vote_count") public int upVoteCount;
     @SerializedName("view_count") public int viewCount;
+
+    public static class Response {
+
+        @SerializedName("items") public ArrayList<Question> items;
+        @SerializedName("quota_remaining") public int quotaRemaining;
+        @SerializedName("quota_max") public int quotaMax;
+        @SerializedName("has_more") public boolean hasMore;
+
+    }
+
 }
