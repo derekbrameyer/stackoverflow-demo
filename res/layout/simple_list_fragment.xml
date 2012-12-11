@@ -2,6 +2,7 @@
 <RelativeLayout
         style="@style/Fill"
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:oak="http://oak/oak/schema"
         android:orientation="vertical"
         android:paddingLeft="8dp"
         android:paddingRight="8dp">
@@ -10,7 +11,8 @@
             android:id="@+id/search_text"
             android:hint="@string/search_hint"
             android:inputType="text"
-            android:imeOptions="actionSearch"/>
+            android:imeOptions="actionSearch"
+            oak:cancelDrawable="@drawable/oak_ic_cancel"/>
     <ListView
             style="@style/FillWidth"
             android:id="@id/android:list"
