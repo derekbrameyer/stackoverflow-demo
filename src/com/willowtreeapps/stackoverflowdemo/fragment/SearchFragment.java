@@ -29,6 +29,7 @@ import roboguice.inject.InjectView;
 public class SearchFragment extends RoboSherlockListFragment {
 
     @InjectView(R.id.search_text) CancelEditText searchText;
+    @InjectView(android.R.id.empty) TextView emptyText;
 
     @Inject StackOverflowApi stackOverflowApi;
 
@@ -39,6 +40,8 @@ public class SearchFragment extends RoboSherlockListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSearchListAdapter = new SearchListAdapter(null);
+        setListAdapter(mSearchListAdapter);
     }
 
     @Override
@@ -49,6 +52,8 @@ public class SearchFragment extends RoboSherlockListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getListView().setEmptyView(emptyText);
+        emptyText.setText(R.string.loading);
 
         mGetQuestions = new GetQuestions("tree", 1);
         mGetQuestions.execute();
@@ -91,6 +96,11 @@ public class SearchFragment extends RoboSherlockListFragment {
             mResponse = response;
         }
 
+        public void setData(Question.Response qr) {
+            mResponse = qr;
+            notifyDataSetChanged();
+        }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View v = convertView;
@@ -109,12 +119,12 @@ public class SearchFragment extends RoboSherlockListFragment {
 
         @Override
         public int getCount() {
-            return mResponse.items.size();
+            return mResponse == null ? 0 : mResponse.items.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return mResponse.items.get(position);
+            return mResponse == null ? null : mResponse.items.get(position);
         }
 
         @Override
@@ -137,7 +147,9 @@ public class SearchFragment extends RoboSherlockListFragment {
         @Override
         protected void onPreExecute() {
             // TODO Refresh indicator
-            setListAdapter(null);
+            emptyText.setText(R.string.loading);
+            getSherlockActivity().setSupportProgressBarIndeterminateVisibility(true);
+            mSearchListAdapter.setData(null);
         }
 
         @Override
@@ -153,9 +165,10 @@ public class SearchFragment extends RoboSherlockListFragment {
 
         @Override
         protected void onPostExecute(Void v) {
+            emptyText.setText(R.string.no_questions_found);
+            getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
             if (mResponse != null) {
-                mSearchListAdapter = new SearchListAdapter(mResponse);
-                setListAdapter(mSearchListAdapter);
+                mSearchListAdapter.setData(mResponse);
             } else {
                 // TODO Handle error
             }

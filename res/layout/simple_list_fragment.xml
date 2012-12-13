@@ -20,12 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false"/>
-    <ProgressBar
-            style="@style/Widget.Sherlock.Light.ProgressBar"
+    <TextView
+            style="@style/Wrap"
             android:id="@id/android:empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_below="@id/search_text"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"/>
 </RelativeLayout>

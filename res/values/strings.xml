@@ -5,4 +5,6 @@
     <string name="privileges_c">PRIVILEGES</string>
     <string name="badges_c">BADGES</string>
     <string name="search_hint">tree</string>
+    <string name="no_questions_found">No questions found!</string>
+    <string name="loading">Loading...</string>
 </resources>

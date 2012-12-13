@@ -2,10 +2,10 @@ package com.willowtreeapps.stackoverflowdemo.activity;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
-import com.willowtreeapps.stackoverflowdemo.fragment.BadgesFragment;
 import com.willowtreeapps.stackoverflowdemo.MainApp;
-import com.willowtreeapps.stackoverflowdemo.fragment.PrivilegesFragment;
 import com.willowtreeapps.stackoverflowdemo.R;
+import com.willowtreeapps.stackoverflowdemo.fragment.BadgesFragment;
+import com.willowtreeapps.stackoverflowdemo.fragment.PrivilegesFragment;
 import com.willowtreeapps.stackoverflowdemo.fragment.SearchFragment;
 
 import android.graphics.PixelFormat;
@@ -28,17 +28,21 @@ public class StartupActivity extends RoboSherlockFragmentActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
         super.onCreate(savedInstanceState);
         Log.i(MainApp.TAG, "onCreate");
         setContentView(R.layout.startup_tabs);
 
         bar = getSupportActionBar();
         bar.addTab(
-                bar.newTab().setText(getString(R.string.search_c)).setTabListener(this).setTag(SearchFragment.class.getName()));
+                bar.newTab().setText(getString(R.string.search_c)).setTabListener(this)
+                        .setTag(SearchFragment.class.getName()));
         bar.addTab(bar.newTab().setText(getString(R.string.privileges_c)).setTabListener(this)
                 .setTag(PrivilegesFragment.class.getName()));
         bar.addTab(
-                bar.newTab().setText(getString(R.string.badges_c)).setTabListener(this).setTag(BadgesFragment.class.getName()));
+                bar.newTab().setText(getString(R.string.badges_c)).setTabListener(this)
+                        .setTag(BadgesFragment.class.getName()));
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         bar.setSelectedNavigationItem(0);
         pager.setAdapter(new OakAdapter(getSupportFragmentManager()));
